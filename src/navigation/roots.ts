@@ -23,6 +23,27 @@ export const setMainRoot = (passProps = null) => {
   });
 }
 
+
+export const setOnboardingRoot = (passProps = null) => {
+  Navigation.setRoot({
+    root: {
+      stack: {
+        // id: 'MyStack', // This is the id we're going to use when interacting with the stack
+        children: [
+          {
+            component: {
+              name: Screens.Onboarding,
+              ...!_.isNull(passProps) ? { passProps } : {}
+            },
+          },
+        ],
+      },
+    },
+  });
+}
+
+
+
 export const showSplashScreen = (onFinish) => {
   Navigation.setRoot({
     root: {
@@ -60,7 +81,7 @@ export const setNoInternetRoot = () => {
             component: {
               name: Screens.GenericRoot,
               passProps: {
-                
+
               }
             },
           },

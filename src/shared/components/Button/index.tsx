@@ -4,6 +4,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
+import { useTheme } from 'styled-components';
 import { GLOBAL_THEME } from '../../../lib/constants';
 import { useThemeContext } from '../../../lib/hooks/useThemeContext';
 import Label, { LabelProps } from '../Label';
@@ -27,7 +28,8 @@ interface Props {
 }
 
 function Button(props: Props) {
-  const { colors } = useThemeContext();
+  const { dynamicColor, colors } = useThemeContext()
+
   const ButtonColor = {
     primary: colors.primary.company,
     secondary: colors.primary.teal,
@@ -83,6 +85,8 @@ function Button(props: Props) {
     [props.disabled, props.type, colors],
   );
 
+
+
   return (
     <Pressable
       disabled={props.disabled}
@@ -101,8 +105,10 @@ function Button(props: Props) {
       {props.title ? (
         <Label
           // size={'subhead'}
+          // type='primary'
           weight={'medium'}
-          color={textColor}
+          color={dynamicColor(colors.primary.black, colors.primary.white)}
+          size='body'
           style={[props.titleStyle, { textAlignVertical: 'center' }]}
           {...props.labelProps}>
           {props.title}
@@ -116,9 +122,11 @@ function Button(props: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    // minHeight: heightPercentageToDP(5.6),
+    minHeight: heightPercentageToDP(5.6),
+    width: "100%",
     paddingHorizontal: widthPercentageToDP(3),
     flexDirection: 'row',
+    borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },

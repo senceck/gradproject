@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: widthPercentageToDP(1.7),
     height: widthPercentageToDP(1.7),
-    // backgroundColor: 'rgba(255,255,255,0.5)',
     marginHorizontal: widthPercentageToDP(1),
   },
   activeDot: { backgroundColor: 'white' },

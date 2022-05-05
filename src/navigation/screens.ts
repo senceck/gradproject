@@ -1,6 +1,5 @@
 import { Navigation } from 'react-native-navigation';
 import Development from '../screens/Development';
-import Home from '../screens/Home';
 import Test from '../screens/Test';
 import ScreenWrapper from '../shared/HOC/ScreenWrapper';
 import GuestPopup from "../screens/UserStory/GuestPopup"
@@ -16,6 +15,11 @@ import PlacesSearch from '../screens/PlacesSearch';
 import MapScreen from '../screens/MapScreen';
 import ActionPicker from '../screens/Utility/ActionPicker';
 import GenericRoot from '../screens/Utility/GenericRoot';
+import Onboarding from '../screens/Onboarding';
+
+import Home from '../screens/Home';
+import { push } from '../lib/helpers/navigation';
+import Results from '../screens/Results';
 
 export enum Screens {
   Home = 'Home',
@@ -33,7 +37,9 @@ export enum Screens {
   PlacesSearch = "PlacesSearch",
   MapScreen = "MapScreen",
   ActionPicker = "ActionPicker",
-  GenericRoot = 'GenericRoot'
+  GenericRoot = 'GenericRoot',
+  Onboarding = 'Onboarding',
+  Results = 'Results'
 }
 
 export const registerScreen = (name: string, component: React.FC<any>) => {
@@ -61,4 +67,6 @@ export default function loadScreens() {
   registerScreen(Screens.MapScreen, MapScreen)
   registerScreen(Screens.ActionPicker, ActionPicker)
   registerScreen(Screens.GenericRoot, GenericRoot)
+  registerScreen(Screens.Onboarding, Onboarding)
+  registerScreen(Screens.Results, Results)
 }
