@@ -32,7 +32,7 @@ export function compileColors(mode) {
   return {
     background: {
       // old system fill 1D1D1D
-      systemFill: mode === 'dark' ? '#000' : '#F6F6F6',
+      systemFill: mode === 'dark' ? '#e7e6ed' : '#34343c',
       secondarySystemFill: mode === 'dark' ? '#1C1C1E' : '#FFFFFF',
       tertiarySystemFill: mode === 'dark' ? 'rgb(30,30,30)' : '#EFEFF4',
     },
@@ -47,7 +47,7 @@ export function compileColors(mode) {
     },
     gray,
     label: {
-      primary: mode === 'dark' ? primary.white : '#161616',
+      primary: mode === 'dark' ? '#e6e5ec' : '#34343c',
       secondaryLabel: gray.gray1,
       tertiaryLabel: gray.gray2,
       quaternaryLabel: gray.gray3,

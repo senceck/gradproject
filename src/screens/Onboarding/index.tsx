@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, StatusBar, Animated } from 'react-native'
+import { View, Text, Button, StatusBar, Animated, Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
@@ -35,8 +35,14 @@ export default function Onboarding() {
 
     const [activeIndex, SetActiveIndex] = React.useState<number>(0)
     const handleScroll = (event) => {
-        SetActiveIndex(Math.floor(event.nativeEvent.contentOffset.x / widthPercentageToDP(100)))
+        let DeviceWidth = Dimensions.get('window')?.width;
+        SetActiveIndex(Math.floor(event.nativeEvent.contentOffset.x / DeviceWidth * 1.01))
+        //console.log(event.nativeEvent.contentOffset.x, DeviceWidth)
     }
+
+    // React.useEffect(()=>{
+    //     console.log('activeIndex',activeIndex)
+    // },[activeIndex])
 
     return (
         <Container

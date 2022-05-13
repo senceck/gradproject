@@ -141,7 +141,7 @@ export default function Home() {
                         marginTop: widthPercentageToDP(2)
                     }}
                 >
-                    {!!message ? message : selectedImage ? 'Ready for Upload' : 'Select Image for Detection'}
+                    {!!message ? message : selectedImage ? 'Ready To Process' : 'Please Select An Image'}
                 </Label>
             </Container>
             <View
@@ -165,3 +165,8 @@ export default function Home() {
         </Container>
     )
 }
+
+
+
+// dark gray back ground hex color #34343c
+//light grey text hex color #d2d0d8
