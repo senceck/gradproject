@@ -14,7 +14,6 @@ import {
 } from 'react-native-navigation';
 import NetInfo from '@react-native-community/netinfo';
 import {ifArabic} from '../lib/helpers/locale';
-import {assets} from '../assets';
 import {store} from '../..';
 import {Appearance, Platform, useColorScheme} from 'react-native';
 import {GLOBAL_DEVICE_CONSTANTS_SERVICE} from '../lib/hooks/useDeviceConstants';
@@ -83,7 +82,7 @@ export const setDefaultOptions = (mode: 'dark' | 'light') => {
 };
 
 
-
+//21882188
 Navigation.addOptionProcessor<OptionsTopBar>(
   'topBar',
   (topBar: OptionsTopBar, commandName: CommandName): OptionsTopBar => {
@@ -92,7 +91,7 @@ Navigation.addOptionProcessor<OptionsTopBar>(
         topBar.leftButtons = [
           {
             id: 'dismissModalButton',
-            icon: assets.topBar.icons.close,
+            // icon: assets.topBar.icons.close,
           },
         ];
       }
