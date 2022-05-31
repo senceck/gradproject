@@ -21,13 +21,15 @@ export enum ActionTypes {
 }
 
 export enum STORAGE_KEYS {
+  ONBOARDING= "ONBOARDING",
   SESSION_TOKEN = 'SESSION_TOKEN',
   ENV = 'ENV',
   NOTIFICATION_TOKEN = 'NOTIFICATION_TOKEN',
   CURRENCY = 'CURRENCY',
   LOCALE = 'LOCALE',
   COLOR_MODE = "COLOR_MODE",
-  SOCKET = "SOCKET"
+  SOCKET = "SOCKET",
+  THEME = "THEME"
 }
 
 export enum EVENT_KEYS {
@@ -78,7 +80,7 @@ export const container = {
 
 
 export const GLOBAL_THEME = {
-  container: widthPercentageToDP("4"),
+  container: widthPercentageToDP("5"),
   radius: {
     small: 11,
     custom: 20,

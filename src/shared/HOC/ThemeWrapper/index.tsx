@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ThemeContext from '../../../lib/context/Theme';
 import { useColorScheme } from 'react-native';
 import { EventsRegistry, Navigation } from 'react-native-navigation';
-import { COLOR_MODE } from '../../../lib/constants';
+import { COLOR_MODE, STORAGE_KEYS } from '../../../lib/constants';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const grayColors = (mode) => ({
   gray1: mode === 'dark' ? 'rgb(142,142,147)' : 'rgb(142, 142, 147)',
@@ -17,13 +18,13 @@ export const grayColors = (mode) => ({
 export const primaryColors = (mode) => ({
   blue: mode === 'dark' ? '#3385FF' : '#0052CC',
   teal: '#00B8D9',
-  yellow: '#FFAB00',
-  company: mode == 'dark' ? '#FFF' : '#000',
+  yellow: '#F5A623',
+  company: mode == 'dark' ? '#e7e6ed' : '#34343c',
   purple: mode === 'dark' ? '#7045af' : '#6554C0',
   green: '#36B37E',
   red: mode === 'dark' ? '#FF453A' : '#DE350B',
-  black: '#3A3A3C',
-  white: 'white',
+  black: '#34343c',
+  white: '#e7e6ed',
 });
 
 export function compileColors(mode) {
@@ -32,7 +33,7 @@ export function compileColors(mode) {
   return {
     background: {
       // old system fill 1D1D1D
-      systemFill: mode === 'dark' ? '#e7e6ed' : '#34343c',
+      systemFill: mode === 'dark' ? '#34343c' : '#e7e6ed',
       secondarySystemFill: mode === 'dark' ? '#1C1C1E' : '#FFFFFF',
       tertiarySystemFill: mode === 'dark' ? 'rgb(30,30,30)' : '#EFEFF4',
     },
@@ -47,7 +48,7 @@ export function compileColors(mode) {
     },
     gray,
     label: {
-      primary: mode === 'dark' ? '#e6e5ec' : '#34343c',
+      primary: mode === 'dark' ? '#e7e6ed' : '#34343c',
       secondaryLabel: gray.gray1,
       tertiaryLabel: gray.gray2,
       quaternaryLabel: gray.gray3,
@@ -64,7 +65,8 @@ export function compileColors(mode) {
 function ThemeWrapper(props: { componentId; children }) {
   //@ts-ignore
 
-  let systemColorScheme = useColorScheme()
+  // let systemColorScheme = 'light'
+  let [systemColorScheme, setSystemColorScheme] = React.useState('light')
   // const schemeCompiler = (coming = null) => {
   //   return (userColorScheme == COLOR_MODE.DARK || userColorScheme == COLOR_MODE.LIGHT) ? userColorScheme : COLOR_MODE.LIGHT
   // }
@@ -79,24 +81,25 @@ function ThemeWrapper(props: { componentId; children }) {
   );
 
   const changeScheme = async (mode: COLOR_MODE) => {
+    setSystemColorScheme(mode)
   }
 
+  const checkForExistingColorSchemes = async () => {
+    let existing = await AsyncStorage.getItem(STORAGE_KEYS.THEME)
+    setSystemColorScheme(!!existing ? existing : 'light')
+  }
 
+  React.useEffect(()=>{
+    checkForExistingColorSchemes()
+  },[])
 
 
   useEffect(() => {
     const _colors = compileColors(systemColorScheme);
-    // themeRedux.setColors(_colors)(dispatch);
     setColors(_colors)
-    // setDefaultOptions(systemColorScheme)
-    // Navigation.mergeOptions(props.componentId, {
-    //   topBar: {
-    //     background: {
-    //       color: colors.background.secondarySystemFill,
-    //     },
-    //   },
-    // });
+
   }, [systemColorScheme]);
+
   return (
     <ThemeContext.Provider
       value={{

@@ -4,7 +4,6 @@ import { Image, View } from 'react-native'
 import { widthPercentageToDP } from 'react-native-responsive-screen'
 import { GLOBAL_THEME } from '../../../lib/constants'
 import { useDeviceConstants } from '../../../lib/hooks/useDeviceConstants'
-import { initializeApp } from '../../../navigation'
 import { setMainRoot, showSplashScreen } from '../../../navigation/roots'
 import Button from '../../../shared/components/Button'
 import Container from '../../../shared/components/Container'
@@ -86,7 +85,6 @@ export default function GenericRoot() {
                         showSplashScreen(async () => {
                             await setMainRoot();
                         })
-                        await initializeApp();
                     }
                 }}
                 title='Retry'

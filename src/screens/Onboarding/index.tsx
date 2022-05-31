@@ -1,24 +1,15 @@
 import React from 'react'
-import { View, Text, Button, StatusBar, Animated, Dimensions } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
-
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
-import { GLOBAL_THEME } from '../../lib/constants'
+import { View, Animated, Dimensions } from 'react-native'
+import { widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDeviceConstants } from '../../lib/hooks/useDeviceConstants'
-import { useThemeContext } from '../../lib/hooks/useThemeContext'
 import Container from '../../shared/components/Container'
-import Icon from '../../shared/components/Icon'
-import Label from '../../shared/components/Label'
 import PageIndicator from '../../shared/components/PageIndicator'
 import Screen1 from './Screen1'
 import Screen2 from './Screen2'
 import Screen3 from './Screen3'
 
-
-
-
 export default function Onboarding() {
-    const { colors } = useThemeContext()
+
     const { topSpace, bottomSpace } = useDeviceConstants()
     const ONBOARDING_SCREENS = [
         {
@@ -37,12 +28,8 @@ export default function Onboarding() {
     const handleScroll = (event) => {
         let DeviceWidth = Dimensions.get('window')?.width;
         SetActiveIndex(Math.floor(event.nativeEvent.contentOffset.x / DeviceWidth * 1.01))
-        //console.log(event.nativeEvent.contentOffset.x, DeviceWidth)
     }
 
-    // React.useEffect(()=>{
-    //     console.log('activeIndex',activeIndex)
-    // },[activeIndex])
 
     return (
         <Container

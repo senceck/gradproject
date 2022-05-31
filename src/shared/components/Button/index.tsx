@@ -32,7 +32,7 @@ function Button(props: Props) {
 
   const ButtonColor = {
     primary: colors.primary.company,
-    secondary: colors.primary.teal,
+    secondary: colors.primary.yellow,
     selected: colors.primary.blue,
     light: colors.fillColors.tertiarySystemFill,
     link: 'transparent',
@@ -122,11 +122,11 @@ function Button(props: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: heightPercentageToDP(5.6),
+    minHeight: heightPercentageToDP(7.6),
     width: "100%",
     paddingHorizontal: widthPercentageToDP(3),
     flexDirection: 'row',
-    borderRadius: 5,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
